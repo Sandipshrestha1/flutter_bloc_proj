@@ -4,6 +4,8 @@ import 'package:flutter_bloc_proj/fetaures/cart/ui/cart_screen.dart';
 import 'package:flutter_bloc_proj/fetaures/home/bloc/home_bloc.dart';
 import 'package:flutter_bloc_proj/fetaures/wishlist/ui/wishlist.dart';
 
+import 'product_tile_widget.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -49,6 +51,7 @@ class _HomeState extends State<Home> {
             );
           //   break;
           case HomeLoadedSucessState:
+          final sucessState = state as HomeLoadedSucessState;
             //  break;
             return Scaffold(
               appBar: AppBar(
@@ -67,6 +70,18 @@ class _HomeState extends State<Home> {
                       icon: Icon(Icons.shopping_bag_rounded))
                 ],
               ),
+
+body: ListView.builder(
+  
+  itemCount: sucessState.products.length,
+  
+  itemBuilder: (context, index) {
+return ProductTileWidget(productDataModel:sucessState.products[index] );
+
+
+}),
+
+
             );
 
           case HomeErrorState:
