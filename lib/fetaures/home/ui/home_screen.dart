@@ -42,6 +42,16 @@ class _HomeState extends State<Home> {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => WishList()));
         }
+
+else if (state is HomeProductItemCartedActionState) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Items added to cart")));
+}
+else if (state is HomeProductItemWishlistedActionState) {
+
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text(" Item  added to  Favourite") ));
+}
+
+
       },
       builder: (context, state) {
         switch (state.runtimeType) {
@@ -51,7 +61,7 @@ class _HomeState extends State<Home> {
             );
           //   break;
           case HomeLoadedSucessState:
-          final sucessState = state as HomeLoadedSucessState;
+            final sucessState = state as HomeLoadedSucessState;
             //  break;
             return Scaffold(
               appBar: AppBar(
@@ -70,18 +80,15 @@ class _HomeState extends State<Home> {
                       icon: Icon(Icons.shopping_bag_rounded))
                 ],
               ),
-
-body: ListView.builder(
-  
-  itemCount: sucessState.products.length,
-  
-  itemBuilder: (context, index) {
-return ProductTileWidget(productDataModel:sucessState.products[index] );
-
-
-}),
-
-
+              body: ListView.builder(
+                  physics: BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics()),
+                  itemCount: sucessState.products.length,
+                  itemBuilder: (context, index) {
+                    return ProductTileWidget(
+                      homeBloc: homeBloc,
+                        productDataModel: sucessState.products[index]);
+                  }),
             );
 
           case HomeErrorState:
