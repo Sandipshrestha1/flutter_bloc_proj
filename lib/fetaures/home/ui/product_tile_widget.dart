@@ -63,7 +63,7 @@ clickedProduct: productDataModel
                   ),
                   IconButton(
                       onPressed: () {
-                        homeBloc.add(HomeProductWishlistButtonClickedEvent(
+                        homeBloc.add(HomeProductCartButtonClickedEvent(
                           clickedProduct: productDataModel
                         ));
                       },
