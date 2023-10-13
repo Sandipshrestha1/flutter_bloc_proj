@@ -50,11 +50,6 @@ final CartBloc cartBloc;
                                children: [
                   IconButton(
                     onPressed: () {
-// homeBloc.add(HomeProductWishlistButtonClickedEvent(
-
-// clickedProduct: productDataModel
-
-// ));
 
 
 
@@ -63,11 +58,15 @@ final CartBloc cartBloc;
                   ),
                   IconButton(
                       onPressed: () {
-                        // homeBloc.add(HomeProductCartButtonClickedEvent(
-                        //   clickedProduct: productDataModel
-                        // ));
+                     
+cartBloc.add(CartRemoveFromCartEvent(
+
+  productDataModel: productDataModel
+));
+
+
                       },
-                      icon: Icon(Icons.shopping_cart_checkout_rounded))
+                      icon: Icon(Icons.remove_shopping_cart_rounded))
                 ],
               )
             ],
